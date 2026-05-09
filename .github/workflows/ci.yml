@@ -291,6 +291,9 @@ jobs:
         with:
           cache-key: "ci-test"
 
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake pkg-config libssl-dev libsasl2-dev libzstd-dev liblzma-dev libbz2-dev
+
       - name: Run tests
         run: make test
 
@@ -307,6 +310,9 @@ jobs:
         uses: ./.github/actions/setup-rust
         with:
           cache-key: "ci-build"
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake pkg-config libssl-dev libsasl2-dev libzstd-dev liblzma-dev libbz2-dev
 
       - name: Build release
         run: make build

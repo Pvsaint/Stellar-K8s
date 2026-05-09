@@ -45,14 +45,18 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry \
     --bin kubectl-stellar \
     --bin stellar-sidecar \
     --bin stellar-watcher \
-    --bin stellar-fork-detector
-
-# Strip binaries to reduce image size
-RUN strip /app/target/release/stellar-operator \
-    && strip /app/target/release/kubectl-stellar \
-    && strip /app/target/release/stellar-sidecar \
-    && strip /app/target/release/stellar-watcher \
-    && strip /app/target/release/stellar-fork-detector
+    --bin stellar-fork-detector && \
+  mkdir -p /app/bin && \
+  cp /app/target/release/stellar-operator /app/bin/ && \
+  cp /app/target/release/kubectl-stellar /app/bin/ && \
+  cp /app/target/release/stellar-sidecar /app/bin/ && \
+  cp /app/target/release/stellar-watcher /app/bin/ && \
+  cp /app/target/release/stellar-fork-detector /app/bin/ && \
+  strip /app/bin/stellar-operator \
+    /app/bin/kubectl-stellar \
+    /app/bin/stellar-sidecar \
+    /app/bin/stellar-watcher \
+    /app/bin/stellar-fork-detector
 
 # ==============================================================================
 # Stage 4: Local Binaries - Fast local packaging from host build artifacts
@@ -98,11 +102,11 @@ LABEL org.opencontainers.image.description="Stellar-K8s Kubernetes Operator"
 LABEL org.opencontainers.image.licenses="Apache-2.0"
 
 # Copy stripped binaries
-COPY --from=builder /app/target/release/stellar-operator /stellar-operator
-COPY --from=builder /app/target/release/kubectl-stellar /kubectl-stellar
-COPY --from=builder /app/target/release/stellar-sidecar /stellar-sidecar
-COPY --from=builder /app/target/release/stellar-watcher /stellar-watcher
-COPY --from=builder /app/target/release/stellar-fork-detector /stellar-fork-detector
+COPY --from=builder /app/bin/stellar-operator /stellar-operator
+COPY --from=builder /app/bin/kubectl-stellar /kubectl-stellar
+COPY --from=builder /app/bin/stellar-sidecar /stellar-sidecar
+COPY --from=builder /app/bin/stellar-watcher /stellar-watcher
+COPY --from=builder /app/bin/stellar-fork-detector /stellar-fork-detector
 
 # Run as non-root user (UID 65532 is the nonroot user in distroless)
 USER nonroot:nonroot
