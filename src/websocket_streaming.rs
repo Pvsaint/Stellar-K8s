@@ -277,9 +277,7 @@ async fn handle_websocket(
     });
 
     if let Ok(msg_str) = serde_json::to_string(&handshake) {
-        let _ = sender
-            .send(axum::extract::ws::Message::Text(msg_str))
-            .await;
+        let _ = sender.send(axum::extract::ws::Message::Text(msg_str)).await;
     }
 
     // Stream messages to client
@@ -296,10 +294,7 @@ async fn handle_websocket(
 
             for message in messages {
                 if let Ok(msg_str) = serde_json::to_string(&message) {
-                    if let Err(e) = sender
-                        .send(axum::extract::ws::Message::Text(msg_str))
-                        .await
-                    {
+                    if let Err(e) = sender.send(axum::extract::ws::Message::Text(msg_str)).await {
                         error!("Failed to send message: {}", e);
                         break;
                     }
@@ -359,7 +354,6 @@ pub async fn sse_fallback_handler(
     State(streaming_state): State<Arc<StreamingState>>,
 ) -> impl IntoResponse {
     use axum::response::sse::{Event, Sse};
-    
 
     let filter = parse_subscription_filter(&params);
 

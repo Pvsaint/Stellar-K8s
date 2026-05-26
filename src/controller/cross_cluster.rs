@@ -481,8 +481,6 @@ pub struct PeerLatencyStatus {
     pub healthy: bool,
 }
 
-
-
 /// Synchronize secrets across clusters for multi-region failover.
 #[instrument(skip(client, config))]
 pub async fn sync_secrets_cross_cluster(

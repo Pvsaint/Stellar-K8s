@@ -366,7 +366,9 @@ impl CanaryDeploymentController {
             .filter(|s| {
                 !matches!(
                     s.state,
-                    CanaryState::RolloutComplete | CanaryState::RollbackComplete | CanaryState::Failed
+                    CanaryState::RolloutComplete
+                        | CanaryState::RollbackComplete
+                        | CanaryState::Failed
                 )
             })
             .cloned()
