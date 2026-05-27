@@ -52,6 +52,7 @@ pub mod read_replica;
 pub mod schema_utils;
 pub mod seed_secret;
 pub mod service_mesh;
+pub mod traffic_policy;
 pub mod multi_region;
 pub mod federation;
 pub mod stellar_benchmark;
@@ -66,6 +67,10 @@ pub use read_replica::{ReadReplicaConfig, ReadReplicaStrategy};
 pub use service_mesh::{
     CircuitBreakerConfig, IstioMeshConfig, LinkerdMeshConfig, MtlsMode, RetryConfig,
     ServiceMeshConfig,
+};
+pub use traffic_policy::{
+    AdaptiveRateLimitPolicy, CircuitBreakerPolicy, LeakyBucketPolicy, PriorityRule, QosClassPolicy,
+    TokenBucketPolicy, TrafficPolicy, TrafficPolicySpec, TrafficPolicyStatus, TrafficPriorityClass,
 };
 pub use stellar_benchmark::{
     BenchmarkConfig, BenchmarkMetrics, BenchmarkPhase, BenchmarkReport, BenchmarkReportSpec,

@@ -3,7 +3,6 @@
 //! Generates compliance reports for security audits.
 
 use crate::security::{SecurityPosture, SecurityFinding};
-use serde::{Deserialize, Serialize};
 
 pub struct ComplianceReporter;
 
@@ -15,7 +14,10 @@ impl ComplianceReporter {
         
         report.push_str("## Active Findings\n\n");
         for finding in &posture.findings {
-            report.push_str(&format!("- [{}] {}: {}\n", finding.severity, finding.id, finding.description));
+            report.push_str(&format!(
+                "- [{:?}] {}: {}\n",
+                finding.severity, finding.id, finding.description
+            ));
         }
         
         report
