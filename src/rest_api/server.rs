@@ -101,7 +101,7 @@ pub async fn run_server(
         .route("/livez", get(handlers::livez))
         .with_state(state.clone());
 
-    let mut protected = Router::new()
+    let protected = Router::new()
         .route("/leader", get(handlers::leader_status))
         .route("/api/v1/nodes", get(handlers::list_nodes))
         .route("/api/v1/nodes/:namespace/:name", get(handlers::get_node))
@@ -143,6 +143,7 @@ pub async fn run_server(
             "/api/v1/optimization/forecast",
             get(resource_optimization_handlers::optimization_forecast),
         )
+        .route("/api/v1/traffic/dashboard", get(dashboard_handlers::traffic_dashboard))
         .route(
             "/api/v1/dashboard/nodes/:namespace/:name/logs",
             get(dashboard_handlers::get_node_logs),

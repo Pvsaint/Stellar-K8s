@@ -57,6 +57,8 @@ pub mod seed_secret;
 pub mod service_mesh;
 pub mod stellar_benchmark;
 mod stellar_node;
+pub mod traffic_policy;
+pub mod types;
 pub mod tenant;
 pub mod types;
 
@@ -90,5 +92,9 @@ pub use stellar_benchmark::{
 pub use stellar_node::{
     BGPStatus, SnapshotBootstrapStatus, SpecValidationError, StellarNode, StellarNodeSpec,
     StellarNodeStatus,
+};
+pub use traffic_policy::{
+    AdaptiveRateLimitPolicy, CircuitBreakerPolicy, LeakyBucketPolicy, PriorityRule, QosClassPolicy,
+    TokenBucketPolicy, TrafficPolicy, TrafficPolicySpec, TrafficPolicyStatus, TrafficPriorityClass,
 };
 pub use types::*;

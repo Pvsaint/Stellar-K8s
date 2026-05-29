@@ -293,6 +293,8 @@ pub fn export_pdf(
         if current_y < 20.0 {
             break;
         }
+        layer.use_text(format!("  {action}: {count}"), 9.0, Mm(15.0), Mm(y), &font);
+        y -= 6.0;
         layer.use_text(
             format!("  {action}: {count}"),
             9.0,
@@ -324,11 +326,12 @@ pub fn export_pdf(
             current_page_y = 280.0;
         }
 
+        let action = format!("{:?}", entry.action);
         let line = format!(
             "[{}] {} | {} | {}/{} | {}",
             if entry.success { "OK" } else { "FAIL" },
             entry.timestamp.format("%Y-%m-%dT%H:%M:%SZ"),
-            format!("{:?}", entry.action),
+            action,
             entry.namespace,
             entry.resource,
             entry.actor,
