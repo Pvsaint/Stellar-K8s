@@ -57,6 +57,7 @@ mod health_summary;
 mod job_handlers;
 pub mod metrics_store;
 mod oidc;
+mod resource_optimization_handlers;
 mod scp_topology;
 mod server;
 pub mod stellar_metrics_server;
