@@ -1,211 +1,40 @@
-# 🚀 Stellar-K8s v[VERSION] Release Notes
+# Release v[VERSION]
 
-> **Release Date:** YYYY-MM-DD
-> **Helm Chart:** `stellar-operator-[VERSION].tgz`
-> **Container Image:** `ghcr.io/stellar/stellar-k8s:[VERSION]`
+**Release Date:** [DATE]
 
 ---
 
-## 📋 Table of Contents
+## 📋 Overview
 
-- [Highlights](#-highlights)
-- [Features](#-features)
-- [Bug Fixes](#-bug-fixes)
-- [Breaking Changes](#-breaking-changes)
-- [Security](#-security)
-- [Performance](#-performance)
-- [Dependencies](#-dependencies)
-- [Upgrade Guide](#-upgrade-guide)
-- [Contributors](#-contributors)
-- [Checksums](#-checksums)
+<!-- Provide a brief summary of what this release accomplishes. This appears at the top of the release page. -->
+
+A concise overview of the release highlights and major improvements.
 
 ---
 
-## ✨ Highlights
+## ✨ Features
 
-> A short paragraph (2–4 sentences) summarizing the most important changes in this release.
-> What is the theme of this release? What should users be most excited about?
+<!-- List all new features added in this release -->
+<!-- Format: - **Feature Name**: Brief description of the feature and its benefits -->
 
----
-
-## 🌟 Features
-
-> List new features added in this release. Each entry should link to the relevant PR or issue.
-> Remove this section if there are no new features.
-
-- **Feature Name** — Brief description of what it does and why it matters. ([#PR_NUMBER](https://github.com/stellar/stellar-k8s/pull/PR_NUMBER))
-- **Feature Name** — Brief description of what it does and why it matters. ([#PR_NUMBER](https://github.com/stellar/stellar-k8s/pull/PR_NUMBER))
-
-<!--
-Tips:
-- Group related features together if there are many.
-- Use sub-bullets for additional context or usage examples.
-- Link to documentation if a feature has a dedicated doc page.
--->
+- **[Feature Name]**: Description of the feature. What problem does it solve? Why should users care?
+- **[Feature Name]**: Description of the feature and its implementation details.
 
 ---
 
 ## 🐛 Bug Fixes
 
-> List bugs that were fixed in this release.
-> Remove this section if there are no bug fixes.
+<!-- List all bugs fixed in this release -->
+<!-- Format: - **[Issue/PR Link]** - Brief description of the bug and how it was fixed -->
 
-- **Fix description** — What was broken and how it was resolved. ([#ISSUE_NUMBER](https://github.com/stellar/stellar-k8s/issues/ISSUE_NUMBER), [#PR_NUMBER](https://github.com/stellar/stellar-k8s/pull/PR_NUMBER))
-- **Fix description** — What was broken and how it was resolved. ([#ISSUE_NUMBER](https://github.com/stellar/stellar-k8s/issues/ISSUE_NUMBER), [#PR_NUMBER](https://github.com/stellar/stellar-k8s/pull/PR_NUMBER))
+- **[Issue #XXX]** - Description of the bug that was fixed.
+- **[Issue #XXX]** - Description of the bug that was fixed.
 
 ---
 
 ## ⚠️ Breaking Changes
 
-> **This section is critical.** List every change that requires user action to upgrade.
-> Remove this section entirely if there are no breaking changes.
-
-> [!CAUTION]
-> The following changes require manual action before or after upgrading.
-
-### `StellarNode` CRD Changes
-
-- **Field renamed / removed / added:** `spec.oldField` → `spec.newField`. Migration steps:
-  1. Step one
-  2. Step two
-
-### Helm Chart Changes
-
-- **Value renamed:** `oldValue` has been renamed to `newValue`. Update your `values.yaml` accordingly.
-
-### Operator Behavior Changes
-
-- **Behavior change:** Describe what changed and what users need to do.
-
----
-
-## 🔒 Security
-
-> List security fixes, CVE patches, and dependency security updates.
-> Remove this section if there are no security-related changes.
-
-- **[CVE-YYYY-NNNNN]** — Brief description of the vulnerability and the fix. Affects versions `>= X.Y.Z, < [VERSION]`. ([Advisory](https://github.com/stellar/stellar-k8s/security/advisories/GHSA-XXXX))
-- Updated `[crate-name]` from `X.Y.Z` to `A.B.C` to address [RUSTSEC-YYYY-NNNN](https://rustsec.org/advisories/RUSTSEC-YYYY-NNNN.html).
-
----
-
-## ⚡ Performance
-
-> Highlight measurable performance improvements. Include benchmark numbers where available.
-> Remove this section if there are no notable performance changes.
-
-| Metric                        | v[PREV_VERSION] | v[VERSION]  | Change   |
-| ----------------------------- | --------------- | ----------- | -------- |
-| Reconciliation latency (p99)  | Xms             | Yms         | -Z%      |
-| Webhook admission latency (p99)| Xms            | Yms         | -Z%      |
-| Binary size                   | XMB             | YMB         | -Z%      |
-| Memory usage (idle)           | XMB             | YMB         | -Z%      |
-
----
-
-## 📦 Dependencies
-
-> List notable dependency updates, especially those that affect behavior or security.
-> Remove this section if there are no notable dependency changes.
-
-| Crate / Tool     | From    | To      | Notes                          |
-| ---------------- | ------- | ------- | ------------------------------ |
-| `kube`           | X.Y.Z   | A.B.C   | Adds support for ...           |
-| `tokio`          | X.Y.Z   | A.B.C   |                                |
-| Helm chart API   | vX      | vY      | Requires Kubernetes >= 1.XX    |
-
----
-
-## 📖 Upgrade Guide
-
-### From v[PREV_VERSION] → v[VERSION]
-
-#### Using Helm
-
-```bash
-# Pull the latest chart
-helm repo update
-
-# Upgrade the operator (dry-run first)
-helm upgrade stellar-operator stellar/stellar-operator \
-  --version [VERSION] \
-  --namespace stellar-system \
-  --dry-run
-
-# Apply the upgrade
-helm upgrade stellar-operator stellar/stellar-operator \
-  --version [VERSION] \
-  --namespace stellar-system
-```
-
-#### Using kubectl
-
-```bash
-# Apply the updated CRDs first (if CRD changes are listed above)
-kubectl apply -f https://github.com/stellar/stellar-k8s/releases/download/v[VERSION]/crds.yaml
-
-# Restart the operator to pick up the new image
-kubectl rollout restart deployment/stellar-operator -n stellar-system
-```
-
-> [!TIP]
-> Always back up your `StellarNode` resources before upgrading:
-> ```bash
-> kubectl get stellarnodes --all-namespaces -o yaml > stellarnodes-backup.yaml
-> ```
-
----
-
-## 👥 Contributors
-
-> Thank everyone who contributed to this release — code, docs, reviews, and bug reports all count.
-
-A huge thank you to everyone who made this release possible! 🙏
-
-<!-- List contributors using their GitHub handles -->
-
-| Contributor | Contribution |
-| ----------- | ------------ |
-| @username   | Feature / Bug fix / Docs / Review |
-| @username   | Feature / Bug fix / Docs / Review |
-
-> New contributors: welcome to the Stellar-K8s community! 🎉
-> Check out our [Contributing Guide](../README.md#contributing) to get started.
-
----
-
-## 🔐 Checksums
-
-> SHA-256 checksums for all release artifacts. Verify your download before use.
-
-```
-# Verify a downloaded artifact:
-sha256sum --check --ignore-missing SHA256SUMS
-```
-
-| Artifact                              | SHA-256                                                          |
-| ------------------------------------- | ---------------------------------------------------------------- |
-| `stellar-operator-linux-amd64.tar.gz` | `<hash>`                                                         |
-| `stellar-operator-linux-arm64.tar.gz` | `<hash>`                                                         |
-| `stellar-operator-darwin-amd64.tar.gz`| `<hash>`                                                         |
-| `stellar-operator-darwin-arm64.tar.gz`| `<hash>`                                                         |
-| `stellar-operator-[VERSION].tgz`      | `<hash>`                                                         |
-
----
-
-## 📚 Resources
-
-- [Documentation](https://github.com/stellar/stellar-k8s#readme)
-- [Changelog](https://github.com/stellar/stellar-k8s/blob/main/CHANGELOG.md)
-- [Open Issues](https://github.com/stellar/stellar-k8s/issues)
-- [Security Policy](https://github.com/stellar/stellar-k8s/blob/main/SECURITY.md)
-
----
-
-<!--
-=============================================================================
 HOW TO USE THIS TEMPLATE
-=============================================================================
 
 1. COPY this file's content into the GitHub Release description when creating
    a new release at: https://github.com/stellar/stellar-k8s/releases/new
@@ -232,5 +61,155 @@ HOW TO USE THIS TEMPLATE
 Tip: The release workflow (`.github/workflows/release.yml`) auto-generates
 a changelog via git-cliff. Use that output as a starting point for the
 Features and Bug Fixes sections, then add context and links manually.
-=============================================================================
 -->
+<!-- List any breaking changes that users need to be aware of -->
+<!-- Format: - **[Change Name]**: Detailed explanation of what changed and migration path -->
+
+- **[Breaking Change]**: Detailed explanation of what changed, why it was necessary, and how users should migrate their code/configuration.
+
+<!-- If there are no breaking changes, you can remove this section or leave it with a note: -->
+<!-- No breaking changes in this release. -->
+
+---
+
+## 📦 Docker Images
+
+New container images are available for this release:
+
+- `ghcr.io/0xolivanode/stellar-operator:v[VERSION]`
+- `ghcr.io/0xolivanode/stellar-soroban-rpc:v[VERSION]`
+
+Pull images with:
+```bash
+docker pull ghcr.io/0xolivanode/stellar-operator:v[VERSION]
+```
+
+---
+
+## 🚀 Installation & Upgrade
+
+### Using Helm
+
+```bash
+helm repo update stellar
+
+# Fresh installation
+helm install stellar-operator stellar/stellar-operator --version v[VERSION]
+
+# Upgrade existing installation
+helm upgrade stellar-operator stellar/stellar-operator --version v[VERSION]
+```
+
+### Using kubectl
+
+```bash
+kubectl apply -f https://github.com/0xOlivanode/Stellar-K8s/releases/download/v[VERSION]/stellar-operator.yaml
+```
+
+### Using Operator Lifecycle Manager (OLM)
+
+```bash
+operator-sdk run bundle ghcr.io/0xolivanode/stellar-operator-bundle:v[VERSION]
+```
+
+---
+
+## 📚 Documentation
+
+- [Installation Guide](https://github.com/0xOlivanode/Stellar-K8s/blob/v[VERSION]/docs/getting-started.md)
+- [API Reference](https://github.com/0xOlivanode/Stellar-K8s/blob/v[VERSION]/docs/api-reference.md)
+- [Changelog](https://github.com/0xOlivanode/Stellar-K8s/blob/v[VERSION]/CHANGELOG.md)
+
+---
+
+## 👥 Contributors
+
+<!-- List all contributors who made this release possible -->
+<!-- Format: @username, @username -->
+
+Thank you to all contributors who made this release possible:
+
+- @[username]
+- @[username]
+- @[username]
+
+---
+
+## 🔍 Known Issues
+
+<!-- List any known issues or limitations in this release (optional) -->
+
+<!-- Example:
+- [Issue #XXX] - Brief description of the known issue and any workarounds.
+-->
+
+---
+
+## 📊 Release Statistics
+
+| Metric | Count |
+|--------|-------|
+| Commits | [#] |
+| Issues Closed | [#] |
+| PRs Merged | [#] |
+| New Contributors | [#] |
+
+---
+
+## 🙏 Support
+
+If you encounter any issues with this release:
+
+1. Check the [documentation](https://github.com/0xOlivanode/Stellar-K8s/blob/v[VERSION]/docs)
+2. Search [existing issues](https://github.com/0xOlivanode/Stellar-K8s/issues)
+3. Review the [SECURITY.md](https://github.com/0xOlivanode/Stellar-K8s/blob/v[VERSION]/SECURITY.md) for security concerns
+4. Open a new issue if the problem is not already reported
+
+---
+
+## 🔗 Links
+
+- **GitHub Repository**: https://github.com/0xOlivanode/Stellar-K8s
+- **Full Changelog**: [Compare with previous release](https://github.com/0xOlivanode/Stellar-K8s/compare/v[PREVIOUS_VERSION]...v[VERSION])
+- **Documentation**: https://github.com/0xOlivanode/Stellar-K8s/tree/v[VERSION]/docs
+
+---
+
+## How to Use This Template
+
+1. **Before Publishing**: Replace all placeholder values:
+   - `[VERSION]` → e.g., `1.0.0`
+   - `[DATE]` → Release date, e.g., `2026-04-28`
+   - `[PREVIOUS_VERSION]` → e.g., `0.9.0`
+   - `[Feature Name]` → Actual feature names with descriptions
+   - `[Issue #XXX]` → Replace with actual issue numbers
+   - `@[username]` → Replace with actual GitHub usernames
+
+2. **Sections to Customize**:
+   - **Overview**: Keep this brief (1-2 sentences)
+   - **Features**: Add all new features with meaningful descriptions
+   - **Bug Fixes**: Reference PR/Issue numbers for traceability
+   - **Breaking Changes**: Be explicit about migration paths
+   - **Contributors**: Thank everyone who contributed
+   - **Known Issues**: Only include if there are known problems
+   - **Release Statistics**: Update with actual metrics
+
+3. **Best Practices**:
+   - Keep the tone professional and user-focused
+   - Use clear, descriptive language
+   - Provide links to relevant documentation
+   - Include migration guides for breaking changes
+   - Highlight security-related updates
+   - Add examples where helpful
+
+4. **Publishing**:
+   - Create a new release on GitHub
+   - Copy this template content into the release description
+   - Attach binaries/artifacts if applicable
+   - Select "Create a discussion for this release" if desired
+   - Publish the release
+
+---
+
+**Template Version:** 1.0  
+**Last Updated:** 2026-04-28
