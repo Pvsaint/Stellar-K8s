@@ -74,7 +74,6 @@ pub mod stellar_aiops;
 pub mod stellar_disaster_recovery;
 pub mod stellar_gitops;
 pub mod stellar_registry;
-pub mod stellar_secret;
 pub mod stellar_security;
 
 #[cfg(test)]

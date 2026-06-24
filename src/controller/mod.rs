@@ -68,7 +68,6 @@ pub mod quota;
 pub mod registry_controller;
 pub mod resource_meta;
 pub mod snapshot_integrity;
-pub mod stellar_secret_controller;
 
 pub mod anomaly_detection;
 pub(crate) mod archive_health;
@@ -214,7 +213,6 @@ pub use service_mesh::{
     ensure_request_authentication, ensure_virtual_service,
 };
 pub use snapshot_worker::run_snapshot_worker;
-pub use stellar_secret_controller::reconcile_stellar_secret;
 pub use webhook_delivery::{
     DeliveryRecord, WebhookDeliveryService, WebhookEndpoint, WebhookEvent, WebhookEventType,
 };
