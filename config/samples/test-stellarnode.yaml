@@ -8,7 +8,7 @@ metadata:
   namespace: default
 spec:
   nodeType: Validator
-  network: Testnet
+  network: testnet
   version: "v21.0.0"
   replicas: 1
   # Canonical default resource footprint for a Testnet validator.

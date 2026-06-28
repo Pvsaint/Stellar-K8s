@@ -11,7 +11,7 @@ spec:
   # 'SorobanRpc' provides smart contract execution environment.
   nodeType: SorobanRpc
 
-  network: Testnet
+  network: testnet
 
   version: "v21.1.0"
 

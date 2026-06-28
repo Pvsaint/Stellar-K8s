@@ -17,7 +17,7 @@ spec:
   nodeType: Validator
   
   # Network configuration
-  network: Testnet
+  network: testnet
   
   # Stellar Core version
   version: "v21.0.0"
